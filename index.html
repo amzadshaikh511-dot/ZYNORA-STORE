@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZYNORA | Everyday, Elevated</title>
+<style>
+:root{--bg:#080808;--panel:#141414;--muted:#aaa;--line:#303030;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+header{padding:20px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:sticky;top:0;background:#080808ed}
+.logo{font-size:25px;letter-spacing:5px;font-weight:800}.tag{color:var(--muted);font-size:12px;letter-spacing:2px}
+.hero{padding:70px 7% 55px;background:linear-gradient(120deg,#191919,#080808);text-align:center}
+.hero p{color:#bbb;letter-spacing:3px;text-transform:uppercase;font-size:11px}.hero h1{font-size:clamp(38px,8vw,76px);letter-spacing:5px;margin:16px 0}.hero .sub{letter-spacing:0;text-transform:none;font-size:16px;line-height:1.6}
+.btn{background:white;color:black;border:0;padding:13px 22px;font-weight:bold;cursor:pointer;display:inline-block;text-decoration:none;margin-top:12px}
+main{padding:35px 6% 70px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}.section-head h2{letter-spacing:2px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.filters button{background:transparent;color:white;border:1px solid #555;padding:9px 14px;cursor:pointer}.filters button.active{background:white;color:black}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.product{background:var(--panel);border:1px solid var(--line);padding:15px}.photo{height:190px;background:linear-gradient(135deg,#292929,#111);display:grid;place-items:center;color:#888;font-size:13px;letter-spacing:2px}.product h3{margin:15px 0 6px}.muted{color:var(--muted);font-size:13px}.price{font-weight:bold;margin-top:10px}.product button{width:100%;padding:11px;background:white;color:#000;border:0;font-weight:bold;margin-top:12px;cursor:pointer}
+.notice{border:1px solid var(--line);padding:18px;margin-top:28px;color:#bbb;line-height:1.6;font-size:13px}
+footer{border-top:1px solid var(--line);padding:25px 6%;color:#999;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:520px){header{padding:16px 5%}.hero{padding:55px 6%}.logo{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div class="logo">ZYNORA</div><div class="tag">EVERYDAY, ELEVATED</div></header>
+<section class="hero"><p>THE NEW EVERYDAY</p><h1>OWN YOUR STYLE.</h1><div class="sub">Discover thoughtfully picked everyday essentials.<br>Minimal look. Maximum expression.</div><a class="btn" href="#collection">EXPLORE COLLECTION</a></section>
+<main id="collection">
+<div class="section-head"><div><div class="tag">CURATED FOR YOU</div><h2>FEATURED COLLECTION</h2></div><div class="muted">A fresh start by ZYNORA</div></div>
+<div class="filters"><button class="active" data-cat="All">All</button><button data-cat="Fashion">Fashion</button><button data-cat="Accessories">Accessories</button><button data-cat="Lifestyle">Lifestyle</button></div>
+<div class="grid" id="products"></div>
+<div class="notice"><b>Launching soon</b><br>This is the first storefront preview. Product availability, delivery, online payments and cash on delivery will be enabled only after supplier, checkout and order processing are configured.</div>
+</main>
+<footer><span>© 2026 ZYNORA. All rights reserved.</span><span>Minimal. Modern. Yours.</span></footer>
+<script>
+const items=[
+{name:"Everyday Essential",cat:"Fashion",price:"₹—",desc:"A versatile pick for your daily rotation"},
+{name:"Minimal Carry",cat:"Accessories",price:"₹—",desc:"Simple details, practical style"},
+{name:"Lifestyle Edit",cat:"Lifestyle",price:"₹—",desc:"Little upgrades for everyday living"},
+{name:"The Classic Pick",cat:"Fashion",price:"₹—",desc:"A clean look made easy"}
+];
+const root=document.getElementById('products');
+function render(cat='All'){root.innerHTML='';items.filter(x=>cat==='All'||x.cat===cat).forEach(x=>{const el=document.createElement('article');el.className='product';el.innerHTML=`<div class="photo">ZYNORA</div><h3>${x.name}</h3><div class="muted">${x.desc}</div><div class="price">${x.price}</div><button type="button" disabled title="Store launch preview">COMING SOON</button>`;root.appendChild(el)})}
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');render(b.dataset.cat)}));render();
+</script>
+</body></html>
